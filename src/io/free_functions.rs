@@ -1,4 +1,7 @@
-use std::fs::File;
+#[cfg(not(target_vendor = "teaclave"))]
+use std::fs::{File, OpenOptions};
+#[cfg(target_vendor = "teaclave")]
+use std::untrusted::fs::{File, OpenOptions};
 use std::io::{BufRead, BufReader, BufWriter, Seek};
 use std::path::Path;
 use std::u32;
